@@ -1,0 +1,27 @@
+# Mock With Metal
+
+The goal of this app is to use metal-ui and mock data for creating a demo website.
+
+## To run local:
+
+1. Clone repo
+2. `cd` into where you cloned it
+3. Run `npm run install:all` NOTE: node v14.9.0 was used for creation and is the only version tested
+4. Run `npm start` to start the client and server
+5. Browser should open navigated to [localhost:3000](http://localhost:3000)
+
+## Development Environment:
+
+```sh
+PORT (default 3000)
+NODE_ENV=local
+PROJECT_ID="a-fake-project"
+```
+
+## Production Environment:
+
+```sh
+PORT (default 8000)
+NODE_ENV=production
+PROJECT_ID="prod-fake-project"
+```

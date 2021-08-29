@@ -1,0 +1,43 @@
+{
+  "name": "mock-with-metal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:fontend && npm run test:backend",
+    "test:frontend": "npm --prefix frontend test",
+    "test:backend": "jest --updateSnapshot --forceExit --ci --testResultsProcessor=\"jest-junit\"",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "npm --prefix backend start",
+    "client": "npm --prefix frontend start",
+    "install:all": "npm ci && npm --prefix backend ci && npm --prefix frontend ci"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "express": "^4.17.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "jsxBracketSameLine": true,
+    "semi": true,
+    "printWidth": 165,
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "trailingComma": "es5",
+    "overrides": [
+      {
+        "files": [
+          "frontend/**/*.css",
+          "frontend/**/*.scss"
+        ],
+        "options": {
+          "singleQuote": false
+        }
+      }
+    ]
+  }
+}
