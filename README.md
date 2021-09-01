@@ -1,6 +1,6 @@
-# Mock With Metal
+# Mock With Material
 
-The goal of this app is to use metal-ui and mock data for creating a demo website.
+The goal of this app is to use material-ui and mock data for creating a demo website.
 
 ## To run local:
 
