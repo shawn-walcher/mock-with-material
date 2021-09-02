@@ -1,6 +1,17 @@
+import { Redirect, useLocation } from 'react-router-dom';
+import { Typography } from '@material-ui/core';
+
 const NoMatch = () => {
-  // TODO: Redirect to base path
-  return <div>Sorry no match</div>;
+  const location = useLocation();
+
+  console.log(`User tried to access path: ${location.pathname}`);
+
+  return (
+    <div>
+      <Typography variant='h6'>Bad Path, redirecting back to dashboard</Typography>
+      <Redirect to={'/'} />
+    </div>
+  );
 };
 
 export default NoMatch;
