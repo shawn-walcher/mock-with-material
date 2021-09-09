@@ -1,3 +1,4 @@
+import { Card, CardContent, Typography } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 
 const APIHealth = () => {
@@ -14,7 +15,16 @@ const APIHealth = () => {
     fetchHealthCheck();
   }, []);
 
-  return <span>Health status: {healthCheck}</span>;
+  return (
+    <div>
+      <Typography variant='h3' gutterBottom>
+        API Health Status
+      </Typography>
+      <Card variant='outlined'>
+        <CardContent>{healthCheck}</CardContent>
+      </Card>
+    </div>
+  );
 };
 
 export default APIHealth;
