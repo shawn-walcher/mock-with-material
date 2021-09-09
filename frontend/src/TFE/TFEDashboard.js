@@ -18,14 +18,21 @@ import { KeyboardArrowDown, KeyboardArrowUp, Refresh } from '@material-ui/icons'
 import { useState } from 'react';
 
 const TFEDashboard = () => {
-  const [open, setOpen] = useState('false');
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
-      <Typography variant='h3' gutterBottom>Welcome to TFE Management</Typography>
+      <Typography variant='h3' gutterBottom>
+        Welcome to TFE Management
+      </Typography>
       <Card variant='outlined'>
         <CardContent>
-          <Typography variant='h4'>Project List <IconButton area-label='refresh projects' size='small'><Refresh/></IconButton></Typography>
+          <Typography variant='h4'>
+            Project List{' '}
+            <IconButton area-label='refresh projects' size='small'>
+              <Refresh />
+            </IconButton>
+          </Typography>
           {/* TODO: Add filtering */}
           <TableContainer>
             <Table aria-label='collapsible table'>
@@ -62,7 +69,7 @@ const TFEDashboard = () => {
                         <Typography variant='h6' gutterBottom component='div'>
                           Ancestry
                         </Typography>
-                        primary domain > tfe > payments > production
+                        primary domain {'>'} tfe {'>'} payments {'>'} production
                         <Typography variant='h6' gutterBottom component='div'>
                           Owner Name
                         </Typography>
@@ -97,7 +104,7 @@ const TFEDashboard = () => {
                         <Typography variant='h6' gutterBottom component='div'>
                           Ancestry
                         </Typography>
-                        primary domain > tfe > pivot > non-production
+                        primary domain {'>'} tfe {'>'} pivot {'>'} non-production
                         <Typography variant='h6' gutterBottom component='div'>
                           Owner Name
                         </Typography>
@@ -114,7 +121,7 @@ const TFEDashboard = () => {
             </Table>
           </TableContainer>
           {/* TODO: Use dynamic data and state information to setup pagination properly */}
-          <TablePagination rowsPerPage={[10, 25, 50]} component='div' count={1} rowsPerPage={10} page={0} />
+          <TablePagination rowsPerPageOptions={[10, 25, 50]} component='div' count={1} rowsPerPage={10} page={0} />
         </CardContent>
       </Card>
     </div>
