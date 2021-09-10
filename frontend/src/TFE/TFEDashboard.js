@@ -1,5 +1,4 @@
 import {
-  Box,
   Card,
   CardContent,
   IconButton,
@@ -10,15 +9,59 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Collapse,
-  Button,
   TablePagination,
+  LinearProgress,
+  Paper,
 } from '@material-ui/core';
-import { KeyboardArrowDown, KeyboardArrowUp, Refresh } from '@material-ui/icons';
-import { useState } from 'react';
+import { Refresh } from '@material-ui/icons';
+import React, { useEffect, useState } from 'react';
+import TFERow from './TFERow';
 
 const TFEDashboard = () => {
-  const [open, setOpen] = useState(false);
+  const [fetching, setFetching] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [paginationPage, setPaginationPage] = useState(0);
+  const [paginationTotal, setPaginationTotal] = useState(0);
+  const [paginationLimit, setPaginationLimit] = useState(10);
+  const defaultPaginationLimit = 10;
+  const [projects, setProjects] = useState([]);
+
+  const fetchProjects = async (search = undefined, limit = paginationLimit, page = 0) => {
+    setFetching(true);
+    setErrorMessage('');
+    await fetch(`/v1/projects/happy_path?limit=${limit}&page=${page + 1}${search !== undefined ? `&search=${search}` : ''}`, {
+      method: 'GET',
+      headers: new Headers({
+        Authorization: 'mock-token',
+      }),
+    })
+      .then(async (response) => {
+        return { status: response.status, data: await response.json() };
+      })
+      .then(({ status, data }) => {
+        if (status >= 400) setErrorMessage('error');
+        setProjects(data.projects);
+        setPaginationPage(page);
+        setPaginationTotal(data.pagination?.total || 0);
+        setPaginationLimit(limit);
+      });
+    setFetching(false);
+  };
+
+  const handlePaginationLimitChange = (e) => {
+    setPaginationLimit(e.target.value);
+    fetchProjects(undefined, e.target.value, 0);
+  };
+
+  const handlePageChange = (e, newPage) => {
+    setPaginationPage(newPage);
+    fetchProjects(undefined, undefined, newPage);
+  };
+
+  useEffect(() => {
+    fetchProjects(undefined, paginationLimit, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -28,100 +71,54 @@ const TFEDashboard = () => {
       <Card variant='outlined'>
         <CardContent>
           <Typography variant='h4'>
-            Project List{' '}
-            <IconButton area-label='refresh projects' size='small'>
+            Project List
+            <IconButton area-label='refresh projects' size='small' onClick={() => fetchProjects(undefined, paginationLimit, paginationPage)}>
               <Refresh />
             </IconButton>
           </Typography>
           {/* TODO: Add filtering */}
-          <TableContainer>
+          <TableContainer component={Paper}>
             <Table aria-label='collapsible table'>
               <TableHead>
                 <TableRow>
                   <TableCell />
-                  <TableCell>Name</TableCell>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Environment</TableCell>
-                  <TableCell>GitOps only</TableCell>
+                  <TableCell>
+                    <Typography variant='body1'>Name</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='body1'>ID</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='body1'>Environment</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='body1'>GitOps only</Typography>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {/* TODO: Create Backend data and load data dynamically. This will also allow open state to be row specific (currently open affects all rows) */}
-                <TableRow>
-                  <TableCell>
-                    <IconButton area-label='expand row' size='small' onClick={() => setOpen(!open)}>
-                      {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant='contained' color='primary'>
-                      a-project
-                    </Button>
-                  </TableCell>
-                  <TableCell>a-project-id</TableCell>
-                  <TableCell>production</TableCell>
-                  <TableCell>false</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={5}>
-                    <Collapse in={open} timeout='auto' unmountOnExit>
-                      <Box margin={1}>
-                        <Typography variant='h6' gutterBottom component='div'>
-                          Ancestry
-                        </Typography>
-                        primary domain {'>'} tfe {'>'} payments {'>'} production
-                        <Typography variant='h6' gutterBottom component='div'>
-                          Owner Name
-                        </Typography>
-                        John Smith
-                        <Typography variant='h6' gutterBottom component='div'>
-                          Owner ID
-                        </Typography>
-                        JS1234
-                      </Box>
-                    </Collapse>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <IconButton area-label='expand row' size='small' onClick={() => setOpen(!open)}>
-                      {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant='contained' color='primary'>
-                      b-project
-                    </Button>
-                  </TableCell>
-                  <TableCell>b-project-id</TableCell>
-                  <TableCell>non-production</TableCell>
-                  <TableCell>true</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={5}>
-                    <Collapse in={open} timeout='auto' unmountOnExit>
-                      <Box margin={1}>
-                        <Typography variant='h6' gutterBottom component='div'>
-                          Ancestry
-                        </Typography>
-                        primary domain {'>'} tfe {'>'} pivot {'>'} non-production
-                        <Typography variant='h6' gutterBottom component='div'>
-                          Owner Name
-                        </Typography>
-                        Jane Doe
-                        <Typography variant='h6' gutterBottom component='div'>
-                          Owner ID
-                        </Typography>
-                        JD2345
-                      </Box>
-                    </Collapse>
-                  </TableCell>
-                </TableRow>
+                {fetching && (
+                  <TableRow key='loading'>
+                    <TableCell colSpan={5}>
+                      <LinearProgress variant='indeterminate' />
+                    </TableCell>
+                  </TableRow>
+                )}
+                {projects.length > 0 && !fetching && projects.map((item, index) => <TFERow item={item} />)}
               </TableBody>
             </Table>
           </TableContainer>
-          {/* TODO: Use dynamic data and state information to setup pagination properly */}
-          <TablePagination rowsPerPageOptions={[10, 25, 50]} component='div' count={1} rowsPerPage={10} page={0} />
+          {paginationTotal > defaultPaginationLimit && (
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50]}
+              component='div'
+              count={paginationTotal}
+              rowsPerPage={paginationLimit}
+              page={paginationPage}
+              onPageChange={(e, newPage) => handlePageChange(e, newPage)}
+              onRowsPerPageChange={(e) => handlePaginationLimitChange(e)}
+            />
+          )}
         </CardContent>
       </Card>
     </div>

@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+
+const projects = require('./api/v1/routes/projects');
 const { logRegister } = require('./middleware/logRegister');
 
 const TIMEOUT_MS = process.env.TIMEOUT_MS || 240000;
@@ -14,6 +16,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/v1/health', (req, res) => res.status(200).json({message: "Server is OK"}))
+app.use('/v1/projects', projects);
 
 app.use((req, res, next) => {
   const err = new Error('Resource Not Found!');
