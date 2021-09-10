@@ -1,5 +1,4 @@
-import { AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
-import { Menu as MenuIcon } from '@material-ui/icons';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,15 +19,9 @@ const Header = () => {
   return (
     <AppBar position='static'>
       <Toolbar>
-        <IconButton edge='start' className={classes.menuButton} color='inherit' aria-label='menu'>
-          <MenuIcon />
-        </IconButton>
         <Typography variant='h6' className={classes.title}>
           Mock With Material
         </Typography>
-        <Button color='inherit' onClick={() => console.log('Login Clicked')}>
-          Login
-        </Button>
       </Toolbar>
     </AppBar>
   );
