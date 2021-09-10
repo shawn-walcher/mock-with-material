@@ -54,7 +54,7 @@ const TFEDashboard = () => {
                     </IconButton>
                   </TableCell>
                   <TableCell>
-                    <Button variant='contained' color='secondary'>
+                    <Button variant='contained' color='primary'>
                       a-project
                     </Button>
                   </TableCell>
@@ -89,7 +89,7 @@ const TFEDashboard = () => {
                     </IconButton>
                   </TableCell>
                   <TableCell>
-                    <Button variant='contained' color='secondary'>
+                    <Button variant='contained' color='primary'>
                       b-project
                     </Button>
                   </TableCell>

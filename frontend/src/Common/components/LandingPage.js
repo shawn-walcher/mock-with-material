@@ -13,12 +13,12 @@ const LandingPage = () => {
           Information for different subroutes (subapps)
           <Grid container spacing={2}>
             <Grid item>
-              <Button variant='contained' onClick={() => history.push('/tfe')}>
+              <Button variant='contained' color='primary' onClick={() => history.push('/tfe')}>
                 TFE Management
               </Button>
             </Grid>
             <Grid item>
-              <Button variant='contained' onClick={() => history.push('/health')}>
+              <Button variant='contained' color='primary' onClick={() => history.push('/health')}>
                 API Health
               </Button>
             </Grid>
