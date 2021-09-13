@@ -14,14 +14,16 @@ The goal of this app is to use material-ui and mock data for creating a demo web
 
 ```sh
 PORT (default 3000)
-NODE_ENV=local
-PROJECT_ID="a-fake-project"
+API_PORT (default 8000)
+TIMEOUT_MS (default 240000)
 ```
 
-## Production Environment:
+## Backend:
 
-```sh
-PORT (default 8000)
-NODE_ENV=production
-PROJECT_ID="prod-fake-project"
-```
+- Express
+- API setup for MVC
+
+## Frontend:
+
+- React
+- Material-UI

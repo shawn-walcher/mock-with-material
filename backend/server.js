@@ -5,7 +5,7 @@ const projects = require('./api/v1/routes/projects');
 const { logRegister } = require('./middleware/logRegister');
 
 const TIMEOUT_MS = process.env.TIMEOUT_MS || 240000;
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.API_PORT || 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
