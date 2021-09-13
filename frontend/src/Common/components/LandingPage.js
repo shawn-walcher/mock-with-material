@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, Grid, Paper, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router';
 
 const LandingPage = () => {
