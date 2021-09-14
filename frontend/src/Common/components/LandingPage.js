@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Grid, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router';
 
 const LandingPage = () => {
@@ -10,54 +10,53 @@ const LandingPage = () => {
         Demo Portal with Material-UI
       </Typography>
       {/* TODO: Provide links for content and additional helpful landing page features */}
-      <Card variant='outlined'>
-        <CardContent>
-          <Typography variant='h4'>Information for different subroutes (subapps)</Typography>
-          <Grid container spacing={3} justifyContent='center'>
-            <Grid item xs={3}>
-              <Grid item>
-                <Typography variant='h6'>Ut enim ad minim:</Typography>
-                <Typography variant='body1' gutterBottom>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Typography>
-              </Grid>
-              <Grid container>
-                <Grid item>
-                  <Button variant='contained' color='primary' onClick={() => history.push('/tfe')}>
-                    TFE Management
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={3}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} lg={4}>
+          <Card variant='outlined'>
+            <CardContent>
+              <Typography variant='h6'>TFE:</Typography>
+              <Typography variant='body1' gutterBottom>
+                List of projects as if they are managed through TFE.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button variant='contained' color='primary' onClick={() => history.push('/tfe')}>
+                TFE Management
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={4}>
+          <Card variant='outlined'>
+            <CardContent>
+              <Typography variant='h6'>API:</Typography>
+              <Typography variant='body1' gutterBottom>
+                Verify that API is responding to a health check.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button variant='contained' color='primary' onClick={() => history.push('/health')}>
+                API Health
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={4}>
+          <Card variant='outlined'>
+            <CardContent>
               <Typography variant='h6'>Ut enim ad minim:</Typography>
               <Typography variant='body1' gutterBottom>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                A test for logging bad paths and then redirecting the user back home.
               </Typography>
-              <Grid container>
-                <Grid item>
-                  <Button variant='contained' color='primary' onClick={() => history.push('/health')}>
-                    API Health
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={3}>
-              <Typography variant='h6'>Ut enim ad minim:</Typography>
-              <Typography variant='body1' gutterBottom>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Typography>
-              <Grid container>
-                <Grid item>
-                  <Button variant='contained' color='primary' onClick={() => history.push('/badlink')}>
-                    Bad Link
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+            </CardContent>
+            <CardActions>
+              <Button variant='contained' color='primary' onClick={() => history.push('/badlink')}>
+                Bad Link
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 };

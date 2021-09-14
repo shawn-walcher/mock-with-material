@@ -16,17 +16,17 @@ function App() {
       <div className='App'>
         <Header />
         <Router>
-          <Container maxWidth="lg">
-          <div className='App'>
-            <main>
-              <Switch>
-                <Route path='/health' component={APIHealth} />
-                <Route path='/tfe' component={TFEManagement} />
-                <Route exact path='/' component={LandingPage} />
-                <Route component={NoMatch} />
-              </Switch>
-            </main>
-          </div>
+          <Container maxWidth='xl'>
+            <div className='App'>
+              <main>
+                <Switch>
+                  <Route path='/health' component={APIHealth} />
+                  <Route path='/tfe' component={TFEManagement} />
+                  <Route exact path='/' component={LandingPage} />
+                  <Route component={NoMatch} />
+                </Switch>
+              </main>
+            </div>
           </Container>
         </Router>
       </div>
