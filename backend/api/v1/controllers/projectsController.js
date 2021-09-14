@@ -11,11 +11,14 @@ function handleError(apiRes, next) {
 }
 
 function paginatedIndex(req, res, next) {
+  const { projectID, role } = req.params;
   const authorization = req.header('Authorization');
   const path = req.path.replace(/\/$/, '');
   const { limit, page, search, type } = req.query;
   const apiRes =
-    limit && page ? projectsModel.getPaginatedList(path, authorization, limit, page, search, type) : projectsModel.getList(path, authorization, search, type);
+    limit && page
+      ? projectsModel.getPaginatedList(projectID, path, authorization, limit, page, search, type)
+      : projectsModel.getList(projectID, path, authorization, role, search, type);
   if (apiRes.err) return handleError(apiRes, next);
   const { status, data } = apiRes;
   res.status(status).json(data);
