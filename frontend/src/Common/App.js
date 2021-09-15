@@ -7,7 +7,9 @@ import TFEManagement from '../TFE/TFEDashboard';
 import NoMatch from './components/NoMatch';
 import LandingPage from './components/LandingPage';
 
-import { ThemedContext } from './context/ThemeProvider';
+import { ThemedContext } from '../Context/ThemeProvider';
+import { TFEProvider } from '../Context/TFEProvider';
+import ProjectDashboard from '../TFE/components/project/ProjectDashboard';
 
 function App() {
   return (
@@ -15,20 +17,23 @@ function App() {
       <CssBaseline />
       <div className='App'>
         <Header />
-        <Router>
-          <Container maxWidth='xl'>
-            <div className='App'>
-              <main>
-                <Switch>
-                  <Route path='/health' component={APIHealth} />
-                  <Route path='/tfe' component={TFEManagement} />
-                  <Route exact path='/' component={LandingPage} />
-                  <Route component={NoMatch} />
-                </Switch>
-              </main>
-            </div>
-          </Container>
-        </Router>
+        <TFEProvider>
+          <Router>
+            <Container maxWidth='xl'>
+              <div className='App'>
+                <main>
+                  <Switch>
+                    <Route path='/health' component={APIHealth} />
+                    <Route path={'/tfe/:projectID'} component={ProjectDashboard} />
+                    <Route path='/tfe' component={TFEManagement} />
+                    <Route exact path='/' component={LandingPage} />
+                    <Route component={NoMatch} />
+                  </Switch>
+                </main>
+              </div>
+            </Container>
+          </Router>
+        </TFEProvider>
       </div>
     </ThemeProvider>
   );

@@ -1,9 +1,13 @@
 import { Box, Button, Collapse, Grid, IconButton, TableCell, TableRow, Typography } from '@material-ui/core';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useHistory } from 'react-router';
+import { TFEContext } from '../Context/TFEProvider';
 
 const TFERow = ({ item }) => {
+  const { TFE_PATH } = useContext(TFEContext);
   const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   return (
     <>
@@ -14,7 +18,7 @@ const TFERow = ({ item }) => {
           </IconButton>
         </TableCell>
         <TableCell>
-          <Button variant='contained' color='primary'>
+          <Button variant='contained' color='primary' onClick={() => history.push(`${TFE_PATH}/${item.project_id}`)}>
             {item.project_name}
           </Button>
         </TableCell>

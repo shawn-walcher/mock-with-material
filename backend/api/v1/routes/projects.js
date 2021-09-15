@@ -7,6 +7,7 @@ const projectsController = require('../controllers/projectsController');
 //READ
 router.get('/', projectsController.authorizationValidate, projectsController.paginatedIndex);
 router.get('/happy_path', projectsController.authorizationValidate, projectsController.paginatedIndex);
+router.get('/:projectID', projectsController.authorizationValidate, projectsController.paginatedIndex);
 router.get('/:projectID/google_computer_firewall', projectsController.authorizationValidate, projectsController.paginatedIndex);
 router.get('/:projectID/google_compute_network', projectsController.authorizationValidate, projectsController.paginatedIndex);
 router.get('/:projectID/google_iam_roles', projectsController.authorizationValidate, projectsController.paginatedIndex);

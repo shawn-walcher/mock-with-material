@@ -4,6 +4,7 @@ const iamRoles = require('./mockedPayloads/google_iam_roles');
 const iamBindings = require('./mockedPayloads/google_project_iam_binding');
 const projects = require('./mockedPayloads/projects');
 const roleBindings = require('./mockedPayloads/roleBindings');
+const project = require('./mockedPayloads/project');
 
 const projectsService = {
   getList: function (projectID = null, path, authorization, role = null, search = null, type = null) {
@@ -16,8 +17,6 @@ const projectsService = {
           return projects(path, authorization, limit, page, search, type);
         case '/sad_path':
           return { status: 500, err: true, message: `Appropriate error message for ${path}` };
-        case `/${projectID}/iam_binding/${role}`:
-          return roleBindings(projectID, role);
         default:
           return { status: 400, err: true, response: { data: { error: `Appropriate bad request message for ${path}` } } };
       }
@@ -27,6 +26,10 @@ const projectsService = {
           return firewalls(projectID, path, authorization, limit, page, search, type);
         case `${projectID}/google_compute_network`:
           return networks();
+        case `/${projectID}`:
+          return project(projectID);
+        case `/${projectID}/iam_binding/${role}`:
+          return roleBindings(projectID, role);
         case '/sad_path':
           return { status: 500, err: true, message: `Appropriate error message for ${path}` };
         default:
