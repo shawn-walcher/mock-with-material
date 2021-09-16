@@ -1,5 +1,4 @@
-import { Card, Tabs, Tab, Typography, CardContent, CircularProgress, Backdrop } from '@material-ui/core';
-import  zIndex  from '@material-ui/core/styles/zIndex';
+import { Card, Tabs, Tab, Typography, CardContent, CircularProgress, Backdrop } from '@mui/material';
 import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router';
@@ -21,6 +20,8 @@ const ProjectDashboard = () => {
         return <ProjectInformation />;
       case 1:
         return <AuditDashboard />;
+      default:
+        return;
     }
   };
 
@@ -60,7 +61,7 @@ const ProjectDashboard = () => {
 
   return (
     <>
-      <Backdrop open={fetching} style={{ zIndex: zIndex.drawer + 1 }}>
+      <Backdrop open={fetching}>
         <CircularProgress variant='indeterminate' color='primary' size='10rem' thickness={1.5} />
       </Backdrop>
       <Typography variant='h3'>Project Name: {projectInformation.name && projectInformation.name}</Typography>

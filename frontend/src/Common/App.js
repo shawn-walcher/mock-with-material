@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { CssBaseline, Container } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline, Container } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import Header from './components/layout/Header';
 import APIHealth from './components/Health/APIHealth';
 import TFEManagement from '../TFE/TFEDashboard';

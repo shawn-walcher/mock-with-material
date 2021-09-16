@@ -1,13 +1,13 @@
-import { Box, Grid, Typography } from "@material-ui/core";
-import { useContext } from "react";
-import { TFEContext } from "../../../Context/TFEProvider";
+import { Box, Grid, Typography } from '@mui/material';
+import { useContext } from 'react';
+import { TFEContext } from '../../../Context/TFEProvider';
 
 const ProjectInformation = () => {
-  const {projectInformation, projectOwner} = useContext(TFEContext);
+  const { projectInformation, projectOwner } = useContext(TFEContext);
 
   return (
     <Grid container>
-      <Grid item xs={12} md={6}spacing>
+      <Grid item xs={12} md={6} spacing>
         <Box margin={1}>
           <Typography variant='h6' gutterBottom component='div'>
             Project Name
@@ -15,7 +15,7 @@ const ProjectInformation = () => {
           <Typography variant='body1'>{projectInformation.name}</Typography>
         </Box>
       </Grid>
-      <Grid item xs={12} md={6}spacing>
+      <Grid item xs={12} md={6} spacing>
         <Box margin={1}>
           <Typography variant='h6' gutterBottom component='div'>
             Ancestry
@@ -23,7 +23,7 @@ const ProjectInformation = () => {
           <Typography variant='body1'>{projectInformation.ancestry}</Typography>
         </Box>
       </Grid>
-      <Grid item xs={12} md={6}spacing>
+      <Grid item xs={12} md={6} spacing>
         <Box margin={1}>
           <Typography variant='h6' gutterBottom component='div'>
             Owner Name
@@ -31,7 +31,7 @@ const ProjectInformation = () => {
           <Typography variant='body1'>{projectOwner.name}</Typography>
         </Box>
       </Grid>
-      <Grid item xs={12} md={6}spacing>
+      <Grid item xs={12} md={6} spacing>
         <Box margin={1}>
           <Typography variant='h6' gutterBottom component='div'>
             Owner ID
