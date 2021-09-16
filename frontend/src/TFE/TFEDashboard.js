@@ -13,11 +13,12 @@ import {
   Paper,
   Backdrop,
   CircularProgress,
-} from '@material-ui/core';
-import zIndex from '@material-ui/core/styles/zIndex';
-import { Refresh } from '@material-ui/icons';
+} from '@mui/material';
+import zIndex from '@mui/material/styles/zIndex';
+import { Refresh } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import TFERow from './TFERow';
+import { Box } from '@mui/system';
 
 const TFEDashboard = () => {
   const [fetching, setFetching] = useState(false);
@@ -47,7 +48,7 @@ const TFEDashboard = () => {
         setPaginationTotal(data.pagination?.total || 0);
         setPaginationLimit(limit);
       });
-    setFetching(false);
+    setTimeout(() => setFetching(false), 1000);
   };
 
   const handlePaginationLimitChange = (e) => {
@@ -67,20 +68,35 @@ const TFEDashboard = () => {
 
   return (
     <div>
-      <Backdrop open={fetching} style={{ zIndex: zIndex.drawer + 1 }}>
+      {/* <Backdrop open={fetching}>
         <CircularProgress variant='indeterminate' color='primary' size='10rem' thickness={1.5} />
-      </Backdrop>
+      </Backdrop> */}
       <Typography variant='h3' gutterBottom>
         Welcome to TFE Management
       </Typography>
       <Card variant='outlined'>
-        <CardContent dis>
-          <Typography variant='h4'>
-            Project List
-            <IconButton area-label='refresh projects' size='small' onClick={() => fetchProjects(undefined, paginationLimit, paginationPage)}>
-              <Refresh />
-            </IconButton>
-          </Typography>
+        <CardContent>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ m: 1, position: 'relative' }}>
+              <Typography variant='h4'>
+                Project List
+                <IconButton area-label='refresh projects' size='small' onClick={() => fetchProjects(undefined, paginationLimit, paginationPage)} disabled={fetching}>
+                  <Refresh />
+                </IconButton>
+                {fetching && (
+                  <CircularProgress
+                    size={17}
+                    sx={{
+                      position: 'absolute',
+                      top: 14,
+                      right: 8,
+                      zIndex: 1,
+                    }}
+                  />
+                )}
+              </Typography>
+            </Box>
+          </Box>
           {/* TODO: Add filtering */}
           <TableContainer component={Paper}>
             <Table aria-label='collapsible table'>

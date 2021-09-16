@@ -1,5 +1,5 @@
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import { Home } from '@material-ui/icons';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import {Home} from '@mui/icons-material'
 import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
 

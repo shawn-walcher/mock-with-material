@@ -1,5 +1,5 @@
 import { Redirect, useLocation } from 'react-router-dom';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 
 const NoMatch = () => {
   const location = useLocation();

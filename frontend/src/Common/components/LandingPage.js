@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, Grid, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Grid, Typography } from '@mui/material';
 import { useHistory } from 'react-router';
 
 const LandingPage = () => {
@@ -20,7 +20,7 @@ const LandingPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button variant='contained' color='primary' onClick={() => history.push('/tfe')}>
+              <Button onClick={() => history.push('/tfe')}>
                 TFE Management
               </Button>
             </CardActions>
@@ -35,7 +35,7 @@ const LandingPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button variant='contained' color='primary' onClick={() => history.push('/health')}>
+              <Button onClick={() => history.push('/health')}>
                 API Health
               </Button>
             </CardActions>
@@ -50,7 +50,7 @@ const LandingPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button variant='contained' color='primary' onClick={() => history.push('/badlink')}>
+              <Button onClick={() => history.push('/badlink')}>
                 Bad Link
               </Button>
             </CardActions>
