@@ -48,7 +48,7 @@ const TFEDashboard = () => {
         setPaginationTotal(data.pagination?.total || 0);
         setPaginationLimit(limit);
       });
-    setTimeout(() => setFetching(false), 1000);
+    setFetching(false);
   };
 
   const handlePaginationLimitChange = (e) => {

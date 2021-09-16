@@ -52,7 +52,7 @@ const ProjectDashboard = () => {
     if (tempError !== '') {
       setErrorMessage(tempError);
     }
-    setTimeout(() => setFetching(false), 1000);
+    setFetching(false);
   };
 
   useEffect(() => {

@@ -14,6 +14,9 @@ const ThemedContext = createTheme({
     MuiButton: {
       defaultProps: {
         variant: 'contained',
+        style: {
+          textTransform: 'none',
+        },
       },
     },
     MuiBackdrop: {
