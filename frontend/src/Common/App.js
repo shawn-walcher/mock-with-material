@@ -13,12 +13,12 @@ import ProjectDashboard from '../TFE/components/project/ProjectDashboard';
 
 function App() {
   return (
-    <ThemeProvider theme={ThemedContext}>
-      <CssBaseline />
-      <div className='App'>
-        <Header />
-        <TFEProvider>
-          <Router>
+    <Router>
+      <ThemeProvider theme={ThemedContext}>
+        <CssBaseline />
+        <div className='App'>
+          <Header />
+          <TFEProvider>
             <Container maxWidth='xl'>
               <div className='App'>
                 <main>
@@ -32,10 +32,10 @@ function App() {
                 </main>
               </div>
             </Container>
-          </Router>
-        </TFEProvider>
-      </div>
-    </ThemeProvider>
+          </TFEProvider>
+        </div>
+      </ThemeProvider>
+    </Router>
   );
 }
 
