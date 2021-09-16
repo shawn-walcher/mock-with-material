@@ -1,4 +1,5 @@
-import { Card, Tabs, Tab, Typography, CardContent, CircularProgress } from '@material-ui/core';
+import { Card, Tabs, Tab, Typography, CardContent, CircularProgress, Backdrop } from '@material-ui/core';
+import  zIndex  from '@material-ui/core/styles/zIndex';
 import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router';
@@ -50,7 +51,7 @@ const ProjectDashboard = () => {
     if (tempError !== '') {
       setErrorMessage(tempError);
     }
-    setFetching(false);
+    setTimeout(() => setFetching(false), 1000);
   };
 
   useEffect(() => {
@@ -59,13 +60,12 @@ const ProjectDashboard = () => {
 
   return (
     <>
-      <Typography variant='h3'>
-        Project Name: {fetching && <CircularProgress variant='indeterminate' size={30} />}
-        {projectInformation.name && projectInformation.name}
-      </Typography>
+      <Backdrop open={fetching} style={{ zIndex: zIndex.drawer + 1 }}>
+        <CircularProgress variant='indeterminate' color='primary' size='10rem' thickness={1.5} />
+      </Backdrop>
+      <Typography variant='h3'>Project Name: {projectInformation.name && projectInformation.name}</Typography>
       <Typography variant='h4' gutterBottom>
-        Project ID: {fetching && <CircularProgress variant='indeterminate' size={20} />}
-        {projectInformation.id && projectInformation.id}
+        Project ID: {projectInformation.id && projectInformation.id}
       </Typography>
       <Tabs value={tab} indicatorColor='primary' textColor='primary' onChange={(e, newValue) => setTab(newValue)}>
         <Tab label='Project Information' />

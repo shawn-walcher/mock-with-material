@@ -10,9 +10,11 @@ import {
   TableRow,
   Typography,
   TablePagination,
-  LinearProgress,
   Paper,
+  Backdrop,
+  CircularProgress,
 } from '@material-ui/core';
+import zIndex from '@material-ui/core/styles/zIndex';
 import { Refresh } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 import TFERow from './TFERow';
@@ -65,11 +67,14 @@ const TFEDashboard = () => {
 
   return (
     <div>
+      <Backdrop open={fetching} style={{ zIndex: zIndex.drawer + 1 }}>
+        <CircularProgress variant='indeterminate' color='primary' size='10rem' thickness={1.5} />
+      </Backdrop>
       <Typography variant='h3' gutterBottom>
         Welcome to TFE Management
       </Typography>
       <Card variant='outlined'>
-        <CardContent>
+        <CardContent dis>
           <Typography variant='h4'>
             Project List
             <IconButton area-label='refresh projects' size='small' onClick={() => fetchProjects(undefined, paginationLimit, paginationPage)}>
@@ -96,16 +101,7 @@ const TFEDashboard = () => {
                   </TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {fetching && (
-                  <TableRow key='loading'>
-                    <TableCell colSpan={5}>
-                      <LinearProgress variant='indeterminate' />
-                    </TableCell>
-                  </TableRow>
-                )}
-                {projects.length > 0 && !fetching && projects.map((item, index) => <TFERow item={item} />)}
-              </TableBody>
+              <TableBody>{projects.length > 0 && !fetching && projects.map((item, index) => <TFERow item={item} />)}</TableBody>
             </Table>
           </TableContainer>
           {paginationTotal > defaultPaginationLimit && (
