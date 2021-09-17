@@ -1,4 +1,4 @@
-import { Card, Tabs, Tab, Typography, CardContent, CircularProgress, Backdrop } from '@mui/material';
+import { Card, Tabs, Tab, Typography, CardContent, CircularProgress, Backdrop, Snackbar, Alert } from '@mui/material';
 import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router';
@@ -57,10 +57,16 @@ const ProjectDashboard = () => {
 
   useEffect(() => {
     fetchInformation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
+      <Snackbar open={errorMessage !== ''}>
+        <Alert severity='error' onClose={() => setErrorMessage('')}>
+          {errorMessage}
+        </Alert>
+      </Snackbar>
       <Backdrop open={fetching}>
         <CircularProgress variant='indeterminate' color='primary' size='10rem' thickness={1.5} />
       </Backdrop>

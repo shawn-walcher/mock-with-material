@@ -24,6 +24,15 @@ const ThemedContext = createTheme({
         zIndex: zIndex.drawer + 1,
       },
     },
+
+    MuiSnackbar: {
+      defaultProps: {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'left',
+        },
+      },
+    },
   },
 });
 

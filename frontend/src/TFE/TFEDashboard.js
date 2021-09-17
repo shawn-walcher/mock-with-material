@@ -11,10 +11,10 @@ import {
   Typography,
   TablePagination,
   Paper,
-  Backdrop,
   CircularProgress,
+  Alert,
+  Snackbar,
 } from '@mui/material';
-import zIndex from '@mui/material/styles/zIndex';
 import { Refresh } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import TFERow from './TFERow';
@@ -42,7 +42,7 @@ const TFEDashboard = () => {
         return { status: response.status, data: await response.json() };
       })
       .then(({ status, data }) => {
-        if (status >= 400) setErrorMessage('error');
+        if (status >= 400) setErrorMessage(data.message);
         setProjects(data.projects);
         setPaginationPage(page);
         setPaginationTotal(data.pagination?.total || 0);
@@ -68,9 +68,11 @@ const TFEDashboard = () => {
 
   return (
     <div>
-      {/* <Backdrop open={fetching}>
-        <CircularProgress variant='indeterminate' color='primary' size='10rem' thickness={1.5} />
-      </Backdrop> */}
+      <Snackbar open={errorMessage !== ''}>
+        <Alert severity='error' onClose={() => setErrorMessage('')}>
+          {errorMessage}
+        </Alert>
+      </Snackbar>
       <Typography variant='h3' gutterBottom>
         Welcome to TFE Management
       </Typography>
@@ -90,7 +92,6 @@ const TFEDashboard = () => {
                       position: 'absolute',
                       top: 14,
                       right: 8,
-                      zIndex: 1,
                     }}
                   />
                 )}
