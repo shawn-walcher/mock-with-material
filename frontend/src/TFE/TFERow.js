@@ -11,7 +11,7 @@ const TFERow = ({ item }) => {
 
   return (
     <>
-      <TableRow key={item.project_name}>
+      <TableRow key={`${item.project_name}-primary`}>
         <TableCell>
           <IconButton area-label='expand row' size='small' onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
@@ -32,7 +32,7 @@ const TFERow = ({ item }) => {
           <Typography variant='body1'>{`${item.tfe_management_enabled}`}</Typography>
         </TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow key={`${item.project_name}-additional`}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={5}>
           <Collapse in={open} timeout='auto' unmountOnExit>
             <Grid container>

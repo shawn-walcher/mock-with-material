@@ -100,9 +100,9 @@ const TFEDashboard = () => {
           </Box>
           {/* TODO: Add filtering */}
           <TableContainer component={Paper}>
-            <Table aria-label='collapsible table'>
+            <Table aria-label='Projects table'>
               <TableHead>
-                <TableRow>
+                <TableRow key='TFE-header'>
                   <TableCell />
                   <TableCell>
                     <Typography variant='body1'>Name</Typography>

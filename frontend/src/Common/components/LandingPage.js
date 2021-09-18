@@ -44,7 +44,7 @@ const LandingPage = () => {
         <Grid item xs={12} sm={6} lg={4}>
           <Card variant='outlined'>
             <CardContent>
-              <Typography variant='h6'>Ut enim ad minim:</Typography>
+              <Typography variant='h6'>Another Link:</Typography>
               <Typography variant='body1' gutterBottom>
                 A test for logging bad paths and then redirecting the user back home.
               </Typography>
