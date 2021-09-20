@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import zIndex from '@mui/material/styles/zIndex';
 
 const ThemedContext = createTheme({
   palette: {
@@ -19,12 +18,6 @@ const ThemedContext = createTheme({
         },
       },
     },
-    MuiBackdrop: {
-      defaultProps: {
-        zIndex: zIndex.drawer + 1,
-      },
-    },
-
     MuiSnackbar: {
       defaultProps: {
         anchorOrigin: {
