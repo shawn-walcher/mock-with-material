@@ -13,12 +13,12 @@ const TFERow = ({ item }) => {
     <>
       <TableRow key={`${item.project_name}-primary`}>
         <TableCell>
-          <IconButton area-label='expand row' size='small' onClick={() => setOpen(!open)}>
+          <IconButton data-testid={`${item.project_name}-expand`} area-label='expand row' size='small' onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
           </IconButton>
         </TableCell>
         <TableCell>
-          <Button onClick={() => history.push(`${TFE_PATH}/${item.project_id}`)}>
+          <Button  data-testid={`${item.project_name}-goto`} onClick={() => history.push(`${TFE_PATH}/${item.project_id}`)}>
             {item.project_name}
           </Button>
         </TableCell>
