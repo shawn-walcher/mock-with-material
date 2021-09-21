@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
-import ProjectInformation from '../components/project/ProjectInformation';
 import { renderWithContext } from '../../Context/__mocks__/renderWithContext';
+import ProjectInformation from '../components/project/ProjectInformation';
 
 describe('Project Information card', () => {
   test('contains Project Name', () => {

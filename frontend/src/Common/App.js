@@ -1,15 +1,14 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { CssBaseline, Container } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import Header from './components/layout/Header';
-import APIHealth from './components/Health/APIHealth';
-import TFEManagement from '../TFE/TFEDashboard';
-import NoMatch from './components/NoMatch';
-import LandingPage from './components/LandingPage';
-
-import { ThemedContext } from '../Context/ThemeProvider';
 import { TFEProvider } from '../Context/TFEProvider';
+import { ThemeProvider } from '@mui/material/styles';
+import { ThemedContext } from '../Context/ThemeProvider';
+import APIHealth from './components/health/APIHealth';
+import Header from './components/layout/Header';
+import LandingPage from './components/dashboard/LandingPage';
+import NoMatch from './components/NoMatch';
 import ProjectDashboard from '../TFE/components/project/ProjectDashboard';
+import TFEManagement from '../TFE/components/dashboard/TFEDashboard';
 
 function App() {
   return (

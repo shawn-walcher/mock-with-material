@@ -2,7 +2,7 @@ import { Box, Button, Collapse, Grid, IconButton, TableCell, TableRow, Typograph
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
-import { TFEContext } from '../Context/TFEProvider';
+import { TFEContext } from '../../../Context/TFEProvider';
 
 const TFERow = ({ item }) => {
   const { TFE_PATH } = useContext(TFEContext);
