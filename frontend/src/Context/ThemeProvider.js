@@ -26,6 +26,13 @@ const ThemedContext = createTheme({
         },
       },
     },
+    MuiTab: {
+      defaultProps: {
+        style: {
+          textTransform: 'none',
+        },
+      },
+    },
   },
 });
 

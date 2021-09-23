@@ -6,7 +6,7 @@ const ProjectInformation = () => {
   const { projectInformation, projectOwner } = useContext(TFEContext);
 
   return (
-    <Grid container>
+    <Grid container data-testid='information'>
       <Grid item xs={12} md={6}>
         <Box margin={1}>
           <Typography variant='h6' gutterBottom component='div'>
