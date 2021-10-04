@@ -7,7 +7,8 @@ const APIHealth = () => {
   const fetchHealthCheck = async () => {
     return await fetch('/v1/health', { method: 'GET' })
       .then((res) => res.json())
-      .then((data) => setHealthCheck(data.message));
+      .then((data) => setHealthCheck(data.message))
+      .catch((error) => console.log(error));
   };
 
   // On Load fetchHealthCheck
