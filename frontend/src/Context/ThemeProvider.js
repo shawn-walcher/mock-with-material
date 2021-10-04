@@ -10,12 +10,17 @@ const ThemedContext = createTheme({
     },
   },
   components: {
+    MuiCard: {
+      defaultProps: {
+        variant: 'outlined',
+      },
+    },
     MuiButton: {
+      styleOverrides: {
+        textTransform: 'none',
+      },
       defaultProps: {
         variant: 'contained',
-        style: {
-          textTransform: 'none',
-        },
       },
     },
     MuiSnackbar: {
@@ -27,10 +32,8 @@ const ThemedContext = createTheme({
       },
     },
     MuiTab: {
-      defaultProps: {
-        style: {
-          textTransform: 'none',
-        },
+      styleOverrides: {
+        textTransform: 'none',
       },
     },
   },

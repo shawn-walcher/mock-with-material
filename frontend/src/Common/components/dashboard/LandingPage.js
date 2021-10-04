@@ -12,7 +12,7 @@ const LandingPage = () => {
       {/* TODO: Provide links for content and additional helpful landing page features */}
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} lg={4}>
-          <Card variant='outlined'>
+          <Card>
             <CardContent>
               <Typography variant='h6'>TFE:</Typography>
               <Typography variant='body1' gutterBottom>
@@ -25,7 +25,7 @@ const LandingPage = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          <Card variant='outlined'>
+          <Card>
             <CardContent>
               <Typography variant='h6'>API:</Typography>
               <Typography variant='body1' gutterBottom>
@@ -38,7 +38,7 @@ const LandingPage = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          <Card variant='outlined'>
+          <Card>
             <CardContent>
               <Typography variant='h6'>Another Link:</Typography>
               <Typography variant='body1' gutterBottom>

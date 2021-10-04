@@ -71,7 +71,7 @@ const TFEDashboard = () => {
       <Typography variant='h3' gutterBottom>
         Welcome to TFE Management
       </Typography>
-      <Card variant='outlined'>
+      <Card>
         <CardContent>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Box sx={{ m: 1, position: 'relative' }}>

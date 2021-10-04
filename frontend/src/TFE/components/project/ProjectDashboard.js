@@ -74,7 +74,7 @@ const ProjectDashboard = () => {
         <Tab label='Project Information' />
         <Tab label='Audit' />
       </Tabs>
-      <Card variant='outlined'>
+      <Card>
         <CardContent>{tabContent()}</CardContent>
       </Card>
     </>

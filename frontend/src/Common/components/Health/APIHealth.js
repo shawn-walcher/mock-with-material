@@ -20,8 +20,10 @@ const APIHealth = () => {
       <Typography variant='h3' gutterBottom>
         API Health Status
       </Typography>
-      <Card variant='outlined'>
-        <CardContent>{healthCheck}</CardContent>
+      <Card>
+        <CardContent>
+          <Typography variant='body'>{healthCheck}</Typography>
+        </CardContent>
       </Card>
     </div>
   );
