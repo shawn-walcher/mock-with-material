@@ -20,9 +20,7 @@ const LandingPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button onClick={() => history.push('/tfe')}>
-                TFE Management
-              </Button>
+              <Button onClick={() => history.push('/tfe')}>TFE Management</Button>
             </CardActions>
           </Card>
         </Grid>
@@ -35,9 +33,7 @@ const LandingPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button onClick={() => history.push('/health')}>
-                API Health
-              </Button>
+              <Button onClick={() => history.push('/health')}>API Health</Button>
             </CardActions>
           </Card>
         </Grid>
@@ -50,9 +46,7 @@ const LandingPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button onClick={() => history.push('/badlink')}>
-                Bad Link
-              </Button>
+              <Button onClick={() => history.push('/badlink')}>Bad Link</Button>
             </CardActions>
           </Card>
         </Grid>

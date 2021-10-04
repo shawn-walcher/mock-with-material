@@ -32,4 +32,4 @@ const TFEProvider = ({ children }) => {
   );
 };
 
-export {TFEContext, TFEProvider};
+export { TFEContext, TFEProvider };

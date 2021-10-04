@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -16,9 +17,8 @@ import {
   Snackbar,
 } from '@mui/material';
 import { Refresh } from '@mui/icons-material';
-import { useEffect, useState } from 'react';
-import TFERow from './TFERow';
 import { Box } from '@mui/system';
+import TFERow from './TFERow';
 
 const TFEDashboard = () => {
   const [fetching, setFetching] = useState(false);
@@ -32,6 +32,7 @@ const TFEDashboard = () => {
   const fetchProjects = async (search = undefined, limit = paginationLimit, page = 0) => {
     setFetching(true);
     setErrorMessage('');
+
     await fetch(`/v1/projects/happy_path?limit=${limit}&page=${page + 1}${search !== undefined ? `&search=${search}` : ''}`, {
       method: 'GET',
       headers: new Headers({
@@ -47,18 +48,12 @@ const TFEDashboard = () => {
         setPaginationPage(page);
         setPaginationTotal(data.pagination?.total || 0);
         setPaginationLimit(limit);
+      })
+      .catch((error) => {
+        return setErrorMessage(error);
       });
+
     setFetching(false);
-  };
-
-  const handlePaginationLimitChange = (e) => {
-    setPaginationLimit(e.target.value);
-    fetchProjects(undefined, e.target.value, 0);
-  };
-
-  const handlePageChange = (e, newPage) => {
-    setPaginationPage(newPage);
-    fetchProjects(undefined, undefined, newPage);
   };
 
   useEffect(() => {
@@ -118,7 +113,7 @@ const TFEDashboard = () => {
                   </TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>{projects.length > 0 && !fetching && projects.map((item, index) => <TFERow item={item} />)}</TableBody>
+              <TableBody>{projects.length > 0 && !fetching && projects.map((item) => <TFERow key={item.project_name} item={item} />)}</TableBody>
             </Table>
           </TableContainer>
           {paginationTotal > defaultPaginationLimit && (
@@ -128,8 +123,14 @@ const TFEDashboard = () => {
               count={paginationTotal}
               rowsPerPage={paginationLimit}
               page={paginationPage}
-              onPageChange={(e, newPage) => handlePageChange(e, newPage)}
-              onRowsPerPageChange={(e) => handlePaginationLimitChange(e)}
+              onPageChange={(e, newPage) => {
+                setPaginationPage(newPage);
+                fetchProjects(undefined, undefined, newPage);
+              }}
+              onRowsPerPageChange={(e) => {
+                setPaginationLimit(e.target.value);
+                fetchProjects(undefined, e.target.value, 0);
+              }}
             />
           )}
         </CardContent>

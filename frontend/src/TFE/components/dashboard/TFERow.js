@@ -1,6 +1,6 @@
+import { useState, useContext } from 'react';
 import { Box, Button, Collapse, Grid, IconButton, TableCell, TableRow, Typography } from '@mui/material';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { TFEContext } from '../../../Context/TFEProvider';
 
@@ -11,14 +11,14 @@ const TFERow = ({ item }) => {
 
   return (
     <>
-      <TableRow key={`${item.project_name}-primary`}>
+      <TableRow>
         <TableCell>
           <IconButton data-testid={`${item.project_name}-expand`} area-label='expand row' size='small' onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
           </IconButton>
         </TableCell>
         <TableCell>
-          <Button  data-testid={`${item.project_name}-goto`} onClick={() => history.push(`${TFE_PATH}/${item.project_id}`)}>
+          <Button data-testid={`${item.project_name}-goto`} onClick={() => history.push(`${TFE_PATH}/${item.project_id}`)}>
             {item.project_name}
           </Button>
         </TableCell>
@@ -32,7 +32,7 @@ const TFERow = ({ item }) => {
           <Typography variant='body1'>{`${item.tfe_management_enabled}`}</Typography>
         </TableCell>
       </TableRow>
-      <TableRow key={`${item.project_name}-additional`}>
+      <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={5}>
           <Collapse in={open} timeout='auto' unmountOnExit>
             <Grid container>

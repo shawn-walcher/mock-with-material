@@ -9,8 +9,8 @@ const project = require('./mockedPayloads/project');
 const projectsService = {
   getList: function (projectID = null, path, authorization, role = null, search = null, type = null) {
     //Since just mocking paginated data at moment setting this to always be page 1 for non-paginated requests
-    let limit = 10;
-    let page = 1;
+    const limit = 10;
+    const page = 1;
     if (projectID === null) {
       switch (path) {
         case '/happy_path':

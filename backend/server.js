@@ -13,20 +13,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   logRegister(req, res);
   next();
-})
+});
 
-app.use('/v1/health', (req, res) => res.status(200).json({message: "Server is OK"}))
+app.use('/v1/health', (req, res) => res.status(200).json({ message: 'Server is OK' }));
 app.use('/v1/projects', projects);
 
 app.use((req, res, next) => {
   const err = new Error('Resource Not Found!');
   err.status = 404;
   next(err);
-})
+});
 
 app.use((err, req, res, next) => {
-  console.error(`${req.method} ${err.status} ${req.url} ${err.message}`)
-  res.status(err.status || 500).json({message: err.message})
-})
+  console.error(`${req.method} ${err.status} ${req.url} ${err.message}`);
+  res.status(err.status || 500).json({ message: err.message });
+});
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)).timeout = TIMEOUT_MS;

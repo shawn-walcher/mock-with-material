@@ -1,6 +1,5 @@
+import { useState, useContext, useEffect } from 'react';
 import { Card, Tabs, Tab, Typography, CardContent, CircularProgress, Backdrop, Snackbar, Alert } from '@mui/material';
-import { useContext, useEffect } from 'react';
-import { useState } from 'react';
 import { useParams } from 'react-router';
 import { TFEContext } from '../../../Context/TFEProvider';
 import AuditDashboard from '../audit/AuditDashboard';
@@ -28,7 +27,6 @@ const ProjectDashboard = () => {
   const fetchInformation = async () => {
     setFetching(true);
     setErrorMessage('');
-    let tempError = '';
 
     await fetch(`/v1/projects/${projectID}`, {
       method: 'GET',
@@ -41,17 +39,15 @@ const ProjectDashboard = () => {
       })
       .then(({ status, data }) => {
         if (status >= 400) {
-          return (tempError = `${status} - ${data.message ? JSON.stringify(data.message) : 'Trouble loading the data'}`);
+          return setErrorMessage(`${status} - ${data.message ? JSON.stringify(data.message) : 'Trouble loading the data'}`);
         }
         setProjectInformation(data.project);
         setProjectOwner(data.owner);
       })
       .catch((error) => {
-        return (tempError = `Error: ${error}`);
+        return setErrorMessage(`Error: ${error}`);
       });
-    if (tempError !== '') {
-      setErrorMessage(tempError);
-    }
+
     setFetching(false);
   };
 

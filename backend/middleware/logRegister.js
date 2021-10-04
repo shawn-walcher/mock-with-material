@@ -1,5 +1,5 @@
 function logRegister(req, res) {
-  let ip = req.headers['X-FORWARDED-FOR'] || req.connection.remoteAddress;
+  const ip = req.headers['X-FORWARDED-FOR'] || req.connection.remoteAddress;
   const start = process.hrtime();
   res.on('finish', function () {
     const durationMS = getActualRequestDurationMS(start);
@@ -10,8 +10,8 @@ function logRegister(req, res) {
 const getActualRequestDurationMS = (start) => {
   const NS_PER_SEC = 1e9; //convert to nanoseconds
   const NS_TO_MS = 1e6; //convert to milliseconds
-  const diff = process.hrtime(start);
-  return (diff[0] * NS_PER_SEC + diff[1]) / NS_TO_MS;
+  const hrTime = process.hrtime(start);
+  return (hrTime[0] * NS_PER_SEC + hrTime[1]) / NS_TO_MS;
 };
 
 module.exports = { logRegister };
