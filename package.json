@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:fontend && npm run test:backend",
+    "test": "npm run test:frontend && npm run test:backend",
     "test:frontend": "npm --prefix frontend test",
     "test:backend": "jest --updateSnapshot --forceExit --ci --testResultsProcessor=\"jest-junit\"",
     "start": "concurrently \"npm run server\" \"npm run client\"",
