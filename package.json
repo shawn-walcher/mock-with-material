@@ -12,7 +12,9 @@
     "client": "npm --prefix frontend start",
     "install:all": "npm ci && npm run install:backend && npm run install:frontend",
     "install:backend": "npm --prefix backend ci",
-    "install:frontend": "npm --prefix frontend ci"
+    "install:frontend": "npm --prefix frontend ci",
+    "docker:build": "docker-compose -f docker-compose.dev.yml up -d --build",
+    "docker:stop": "docker-compose down --rmi all"
   },
   "keywords": [],
   "author": "",

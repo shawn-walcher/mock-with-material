@@ -1,0 +1,13 @@
+version '3.7'
+
+services:
+  mock-with-material:
+    container_name: mock-with-material
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/usr/src/app'
+      - './usr/src/app/node_modules'
+    ports:
+      - 8000:8000
