@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test:frontend && npm run test:backend",
     "test:frontend": "npm --prefix frontend test",
-    "test:backend": "jest --updateSnapshot --forceExit --ci --testResultsProcessor=\"jest-junit\"",
+    "test:backend": "npm --prefix backend test",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "npm --prefix backend start",
     "client": "npm --prefix frontend start",
@@ -39,5 +39,6 @@
         }
       }
     ]
-  }
+  },
+  "devDependencies": {}
 }
