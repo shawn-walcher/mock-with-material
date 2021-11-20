@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+const { readFile } = require('fs/promises');
 
 const projects = require('./api/v1/routes/projects');
 const { logRegister } = require('./middleware/logRegister');
@@ -17,6 +19,13 @@ app.use((req, res, next) => {
 
 app.use('/v1/health', (req, res) => res.status(200).json({ message: 'Server is OK' }));
 app.use('/v1/projects', projects);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'build')));
+  app.get('*', async (req, res) => {
+    res.send(await readFile('./build/index.html', 'utf8').catch((err) => console.log(err)));
+  });
+}
 
 app.use((req, res, next) => {
   const err = new Error('Resource Not Found!');

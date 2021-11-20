@@ -11,7 +11,7 @@ COPY ./frontend ./
 RUN npm run build
 
 # Stage 2 Setup express.js backend to serve built frontend with minimal dependencies
-FROM node:14-alpine3.12 as runer
+FROM node:14-alpine3.12 as runner
 
 WORKDIR /app
 COPY ./backend/package* ./
