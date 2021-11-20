@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { TFEContext, TFEProvider } from '../TFEProvider';
-import { MockTFE } from './MockTFE';
+import { MockTFE } from './mockTFE';
 
 /**
  * Generates content utilizing context
