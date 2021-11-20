@@ -26,5 +26,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm run install:all
-      - run: ls ./frontend/src/components/health/
+      - run: ls ./frontend/src/Common/components/health/
       - run: npm run test
