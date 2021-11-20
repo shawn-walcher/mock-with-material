@@ -26,5 +26,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm run install:all
-      - run: ls ./frontend/src/Context/__mocks__/
       - run: npm run test
