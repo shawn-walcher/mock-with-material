@@ -26,4 +26,4 @@ TIMEOUT_MS (default 240000)
 ## Frontend:
 
 - React
-- Material-UI v5
+- MUI v5
